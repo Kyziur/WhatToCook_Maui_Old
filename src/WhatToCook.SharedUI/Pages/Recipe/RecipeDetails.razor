@@ -1,0 +1,87 @@
+﻿@page "/recipe/{Id:guid}/details"
+
+<div class="container">
+    <div class="box p-0 is-rounded">
+        <section class="has-background-primary">
+            <div class="is-1">
+                <p class="title">@RecipeForm.Name</p>
+            </div>
+        </section>
+        <div class="p-3">
+            <EditForm Model="@RecipeForm">
+                <div class="field is-horizontal mt-3">
+                    <div class="field-body">
+                        <div class="field">
+                            <label class="label">@Localizer["name"]</label>
+                            <div class="control">
+                                <InputText
+                                    @bind-Value="RecipeForm.Name"
+                                    class="input"
+                                    placeholder="@(Localizer["eg"] + " Spaghetti")"
+                                    type="text"/>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">@Localizer["timeToPrepareLabel"]</label>
+                            <div class="control is-flex">
+                                <InputNumber
+                                    @bind-Value="RecipeForm.TimeNeededToPrepare"
+                                    @oninput="RecipeForm.UpdatePreparationTime"
+                                    class="input"
+                                    placeholder="0"
+                                    type="text"/>
+                                <span class="tag is-large is-warning">@RecipeForm.GetLabelForPreparationTime(RecipeForm.TimeNeededToPrepare)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="column">
+                        <div class="field">
+                            <label class="label">@Localizer["preparation"]</label>
+                            <div class="control">
+                                <InputTextArea @bind-Value="RecipeForm.Preparation"></InputTextArea>
+                            </div>
+                        </div>
+                    </div>
+
+                    @for (var index = 0; index < RecipeForm.Ingredients.Count; index++)
+                    {
+                        <div class="column">
+                            <div>
+                                <label class="label">@Localizer["ingredients"]</label>
+                                <div>
+                                    <div class="field has-addons">
+                                        <p class="control">
+                                            <InputText @bind-value="RecipeForm.Ingredients[index].Name" class="input" placeholder="@Localizer["name"]"/>
+                                        </p>
+                                        <p class="control">
+                                            <InputNumber @bind-Value="RecipeForm.Ingredients[index].Amount" class="input" placeholder="@Localizer["amount"]"/>
+                                        </p>
+
+                                        <p class="control">
+                                            <button @onclick="RemoveIngredient(index)" class="button is-danger">@Localizer["remove"]</button>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="column">
+                                    <button @onclick="AddIngredient()" class="button mt-1 is-pulled-right">@Localizer["add"]</button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div>
+                    <div class="is-pulled-left">
+                        <a href="/" class="button" type="button">@Localizer["back"]</a>
+                    </div>
+                    <div class="is-pulled-right">
+                        <button class="button is-success" type="submit">@Localizer["save"]</button>
+                    </div>
+                </div>
+            </EditForm>
+
+        </div>
+
+    </div>
+</div>

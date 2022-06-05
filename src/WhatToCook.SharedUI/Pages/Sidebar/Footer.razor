@@ -1,0 +1,9 @@
+﻿<footer class="footer py-3 bg-dark bg-gradient @(IsFooterVisible ? "d-block" : "d-none")">
+  <div class="container">
+    <span class="text-white">Later on content might be added here :) </span>
+  </div>
+</footer>
+
+@code {
+    [CascadingParameter] public bool IsFooterVisible { get; set; }
+}

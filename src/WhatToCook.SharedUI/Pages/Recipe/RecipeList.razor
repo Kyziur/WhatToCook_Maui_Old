@@ -1,0 +1,26 @@
+﻿<div class="">
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mt-3">
+    @foreach (var recipes in _recipes.Chunk(3))
+    {
+        @foreach (var recipe in recipes)
+        {
+            <div class="col">
+                <RecipeCard Data="@recipe" />
+            </div>
+        }
+    }
+</div>
+
+</div>
+
+@code {
+
+    IEnumerable<Recipe> _recipes = Enumerable.Range(0, 10).Select(x => new Recipe()
+        {
+            Id = Guid.NewGuid(),
+            CreatedAt = DateOnly.FromDayNumber(1),
+            Name = "Name " + x,
+            IsInFavourites = true
+        });
+
+}

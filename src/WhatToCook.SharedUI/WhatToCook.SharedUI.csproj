@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ResolveStaticWebAssetsInputsDependsOn>
+			IncludeGeneratedStaticFiles;
+			$(ResolveStaticWebAssetsInputsDependsOn)
+		</ResolveStaticWebAssetsInputsDependsOn>
+	</PropertyGroup>
+
+	<Target Name="IncludeGeneratedStaticFiles">
+		<Error Condition="!Exists('wwwroot/libs/bootstrap/bootstrap.min.css')" Text="Missing bootstrap.min.css in wwwroot" />
+		<Error Condition="!Exists('wwwroot/libs/bootstrap/bootstrap.bundle.min.js')" Text="Missing bootstrap.bundle.min.js in wwwroot" />
+		<ItemGroup>
+			<Content Include="wwwroot/libs/bootstrap/bootstrap.min.css" Condition="!Exists('wwwroot/libs/bootstrap/bootstrap.min.css')" />
+			<Content Include="wwwroot/libs/bootstrap/bootstrap.min.css.map" Condition="!Exists('wwwroot/libs/bootstrap/bootstrap.min.css.map')" />
+		</ItemGroup>
+		<ItemGroup>
+			<Content Include="wwwroot/libs/bootstrap/bootstrap.bundle.min.js" Condition="!Exists('wwwroot/libs/bootstrap/bootstrap.bundle.min.js')" />
+			<Content Include="wwwroot/libs/bootstrap/bootstrap.bundle.min.js.map" Condition="!Exists('wwwroot/libs/bootstrap/bootstrap.bundle.min.js.map')" />
+		</ItemGroup>
+	</Target>
+	
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+		<EmbeddedResource Include="wwwroot\**\*" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<None Include="wwwroot\css\open-iconic\FONT-LICENSE" />
+		<None Include="wwwroot\css\open-iconic\font\fonts\open-iconic.svg" />
+		<None Include="wwwroot\css\open-iconic\ICON-LICENSE" />
+		<None Include="wwwroot\css\open-iconic\README.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Localization" Version="6.0.5" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Update="Resources\Translations.Designer.cs">
+			<DependentUpon>Translations.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+		<Compile Update="Resources\TranslationsPl.Designer.cs">
+			<DependentUpon>TranslationsPl.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="_Imports.razor">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\Translations.resx">
+			<LastGenOutput>Translations.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\TranslationsPl.resx">
+			<LastGenOutput>TranslationsPl.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+		</EmbeddedResource>
+	</ItemGroup>
+
+</Project>

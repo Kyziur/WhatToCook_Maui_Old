@@ -1,0 +1,27 @@
+﻿<div class="card">
+    <img class="card-img-top" alt="Placeholder image" src="https://bulma.io/images/placeholders/1280x960.png">
+    <div class="card-body">
+        <h5 class="card-title">@(Data.Name)</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <p class="card-text mt-2"><small class="text-muted">Created at @Data.CreatedAt.ToShortDateString()</small></p>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    [EditorRequired]
+    public Recipe Data { get; set; } = new();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    private void HeartClicked()
+    {
+        Data.IsInFavourites = !Data.IsInFavourites;
+    }
+
+}
