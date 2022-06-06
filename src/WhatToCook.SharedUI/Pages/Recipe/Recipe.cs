@@ -1,4 +1,5 @@
-﻿namespace WhatToCook.SharedUI.Components
+﻿
+namespace WhatToCook.SharedUI.Pages.Recipe
 {
     public class Recipe
     {

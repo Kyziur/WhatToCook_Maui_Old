@@ -1,19 +1,6 @@
 ﻿@inherits LayoutComponentBase
-<CascadingValue Value="IsFooterVisible">
-    <Header OnFooterToggle="ToggleFooter"></Header>
-    <main class="container mt-5">
-        @Body
-        <Footer></Footer>
-    </main>
-
-</CascadingValue>
-
-@code {
-    public bool IsFooterVisible { get; set; }
-
-    private void ToggleFooter()
-    {
-        this.IsFooterVisible = !this.IsFooterVisible;
-        StateHasChanged();
-    }
-}
+<Header></Header>
+<main class="container mt-5">
+    @Body
+    <Footer></Footer>
+</main>

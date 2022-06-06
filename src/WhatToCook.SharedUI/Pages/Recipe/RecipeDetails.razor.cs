@@ -1,9 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Localization;
-using WhatToCook.SharedUI.Resources;
-
-namespace WhatToCook.SharedUI.Pages.Recipe;
+﻿namespace WhatToCook.SharedUI.Pages.Recipe;
 
 public class Ingredient
 {

@@ -4,7 +4,6 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navigation-header" aria-controls="navigation-header" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navigation-header">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
@@ -16,14 +15,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Shopping list</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
             </ul>
             <form role="search" class="mx-lg-2 my-3 my-lg-0">
                 <div class="input-group">
@@ -31,34 +22,16 @@
                     <button class="btn btn-outline-light" type="submit" id="search-button">Search</button>
                 </div>
             </form>
-            <div class="my-3 my-lg-0">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="my-3 my-lg-0 nav-item dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="authentication-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong>Krystian</strong>
                 </a>
+                <ul class="dropdown-menu" aria-labelledby="authentication-dropdown">
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
             </div>
-
-
-
         </div>
     </div>
 </nav>
-
-@code {
-
-    [CascadingParameter] public bool IsFooterVisible { get; set; }
-    [Parameter] public Action OnFooterToggle { get; set; }
-    private void ToggleFooter()
-    {
-        OnFooterToggle?.Invoke();
-    }
-
-
-    public class MenuItem
-    {
-        public string Name { get; set; }
-        public bool IsDivider { get; set; }
-        public string Link { get; set; }
-        public Action Callback { get; set; }
-    }
-}
